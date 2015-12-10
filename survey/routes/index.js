@@ -6,6 +6,8 @@ var MongoClient = require('mongodb').MongoClient
 var passport = require('passport')
   , LocalStrategy = require('passport-local').Strategy;
 
+var shortid = require('shortid');
+
 //====================================================
 //setting Mongodb
 
@@ -45,8 +47,6 @@ router.get('/login', function(req, res, next) {
 });
 
 router.get('/logout', function(req, res, next) {
-  var name = req.user.username;
-  console.log("LOGGIN OUT " + req.user.username)
   req.logout();
   res.send('<script>alert("Logged out success!");location.href="/";</script>');
 });
@@ -63,7 +63,12 @@ router.get('/create', check_auth, function(req, res, next) {
 router.post('/save', check_auth, function(req, res, next) {
   //res.render('index', { title: 'Express' });
   //console.log(req);
-  res.send(req.body);
+  var uurl = shortid.generate();
+  SurveyData.insertOne({user:req.user.username, data:req.body, url:uurl},
+    function (err,result) {
+      assert.equal(err, null);
+      res.send('success!<br>Here is your <a href="http://127.0.0.1:3000/survey/'+uurl+'">LINK</a>');
+  });
 });
 
 router.get('/stat/:a', check_auth, function(req, res, next) {

@@ -87,7 +87,7 @@ function writeSubmit() {
 		type:"POST",
 		data:JSON.stringify(data),
 		contentType:"application/json; charset=utf-8",
-		dataType:"json",
+		dataType:"text",
 		success: function(res){
 			document.body.innerHTML="";
 			document.body.innerHTML=res;
