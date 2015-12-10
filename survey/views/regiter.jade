@@ -1,0 +1,12 @@
+html
+  body
+    form#local-reg.collapse(action='/local-reg', method='post')
+      div
+        p
+        label New Username:
+        input(type='text', name='username')
+      div
+        label New Password:
+        input(type='password', name='password')
+      div
+        input.btn.btn-primary.btn-sm(type='submit', value='Register')

@@ -5,8 +5,14 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
-
+var passport = require('passport');
+var LocalStrategy = require('passport-local');
 var routes = require('./routes/index');
+var flash = require('express-flash')
+
+
+//====================================================
+//setting express
 
 var app = express();
 
@@ -20,8 +26,12 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(session({secret: '716d8x7wsx6q8'}));
+app.use(session({secret: '716d8x7wsx6q8', saveUninitialized: true, resave: true}));
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(flash());
 
 app.use('/', routes);
 
@@ -54,6 +64,20 @@ app.use(function(err, req, res, next) {
     message: err.message,
     error: {}
   });
+});
+
+
+//====================================================
+//setting passport
+
+passport.serializeUser(function(user, done) {
+  console.log("serializing " + user.username);
+  done(null, user);
+});
+
+passport.deserializeUser(function(obj, done) {
+  console.log("deserializing " + obj);
+  done(null, obj);
 });
 
 
