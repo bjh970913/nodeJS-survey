@@ -2,85 +2,9 @@ html
   head
     meta(charset='UTF-8')
     title Document
-    style.
-      #add > div{
-      display: none;
-      }
-      #add:hover > div{
-      display: inherit;
-      }
-      #template{
-      display:none;
-      }
-      .SingleSelect, .MultiSelect, .ShortText, .LongText{
-      width: 600px;
-      }
-      .SingleSelect{
-      background-color: yellowgreen;
-      }
-      .MultiSelect{
-      background-color: yellow;
-      }
-      .ShortText{
-      background-color: crimson;
-      }
-      .LongText{
-      background-color: skyblue;
-      }
+    link(rel='stylesheet', type='text/css', href='/stylesheets/basic.css')
     script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js')
-    script(type='text/javascript').
-      function addSingleSelect() {
-      $("#survey").append($('#template .SingleSelect').clone());
-      }
-      function addMultiSelect() {
-      $("#survey").append($('#template .MultiSelect').clone());
-      }
-      function addShortText() {
-      $("#survey").append($('#template .ShortText').clone());
-      }
-      function addLongText() {
-      $("#survey").append($('#template .LongText').clone());
-      }
-      function addSingleOption(e) {
-      $(e).parent().append("<li><input type='radio'/><input type='text' value='Edit'/></li>");
-      $(e).parent().append($(e));
-      }
-      function addMultiOption(e) {
-      $(e).parent().append("<li><input type='checkbox'/><input type='text' value='Edit'/></li>");
-      $(e).parent().append($(e));
-      }
-      function readSingleSelect(i,o){
-      }
-      function readMultiSelect(i,o){
-      }
-      function readShortText(i,o){
-      }
-      function readLongText(i,o){
-      }
-      function writeSubmit() {
-      var data = {'title':''};
-      var field = $('#survey').children();
-      data['title'] = $(field[0]).val();
-      field = field.slice(1);
-      $.each(field, function(i,o) {
-      data[i]={};
-      switch($(o).attr('class')) {
-      case 'SingleSelect':
-      readSingleSelect(i,o);
-      console.log('read 0');
-      break;
-      case 'MultiSelect':
-      console.log('read 1');
-      break;
-      case 'ShortText':
-      console.log('read 2');
-      break;
-      case 'LongText':
-      console.log('read 3');
-      break;
-      }
-      })
-      }
+    script(src='/javascripts/create.js')
   body
     #survey
       | TITLE : 
@@ -101,20 +25,20 @@ html
         ul
           li(onclick='addSingleOption(this)') ADD
         input(type='checkbox')
-        input(type='button', value='X')
+        input(type='button', value='X', onclick='removeQue(this)')
       .MultiSelect
         input(type='text', value='Edit')
         ul
           li(onclick='addMultiOption(this)') ADD
         input(type='checkbox')
-        input(type='button', value='X')
+        input(type='button', value='X', onclick='removeQue(this)')
       .ShortText
         input(type='text', value='Edit')
         input(type='text')
         input(type='checkbox')
-        input(type='button', value='X')
+        input(type='button', value='X', onclick='removeQue(this)')
       .LongText
         input(type='text', value='Edit')
         textarea(id='', cols='30', rows='10')
         input(type='checkbox')
-        input(type='button', value='X')
+        input(type='button', value='X', onclick='removeQue(this)')

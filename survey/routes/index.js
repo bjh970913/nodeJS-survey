@@ -38,8 +38,10 @@ router.get('/create', function(req, res, next) {
   res.render('create', { title: 'Create your own survey page' });
 });
 
-router.get('/save', function(req, res, next) {
+router.post('/save', function(req, res, next) {
   //res.render('index', { title: 'Express' });
+  //console.log(req);
+  res.send(req.body);
 });
 
 router.get('/stat/:a', function(req, res, next) {

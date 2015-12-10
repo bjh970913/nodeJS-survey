@@ -1,0 +1,28 @@
+#add > div{
+	display: none;
+}
+
+#add:hover > div{
+	display: inherit;
+}
+
+#template{
+	display:none;
+}
+
+.SingleSelect, .MultiSelect, .ShortText, .LongText{
+	width: 600px;
+}
+
+.SingleSelect{
+	background-color: yellowgreen;
+}
+.MultiSelect{
+	background-color: yellow;
+}
+.ShortText{
+	background-color: crimson;
+}
+.LongText{
+	background-color: skyblue;
+}
