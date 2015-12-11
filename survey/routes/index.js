@@ -53,8 +53,23 @@ router.get('/logout', function(req, res, next) {
 });
 
 router.get('/manage', check_auth, function(req, res, next) {
-  //res.render('index', { title: 'Express' });
-  res.send("manage page");
+  SurveyData.find({user:req.user.username}, {title:1, url:1, ans:1}).toArray(function(err, docs){
+    res.render('manage', {data:docs});
+  });
+});
+
+router.get('/admin', check_auth, function(req, res, next) {
+  if(req.user.username == 'admin')
+  {
+    User.find({}).toArray(function(err, docs){
+      res.render('admin', {data:docs});
+    });  
+  }
+  else
+  {
+    res.send("You're not admin.");
+  }
+  
 });
 
 router.get('/create', check_auth, function(req, res, next) {
@@ -62,10 +77,8 @@ router.get('/create', check_auth, function(req, res, next) {
 });
 
 router.post('/save', check_auth, function(req, res, next) {
-  //res.render('index', { title: 'Express' });
-  //console.log(req);
   var uurl = shortid.generate();
-  SurveyData.insertOne({user:req.user.username, data:req.body, url:uurl},
+  SurveyData.insertOne({user:req.user.username, data:req.body, url:uurl, title:req.body.title, ans:0},
     function (err,result) {
       assert.equal(err, null);
       res.send('success!<br>Here is your <a href="http://127.0.0.1:3000/survey/'+uurl+'">LINK</a>');
@@ -82,9 +95,9 @@ router.get('/stat/:a', check_auth, function(req, res, next) {
   res.send(req.params.a);
 });
 
-router.get('/survey/:a', function(req, res, next) {
+router.get('/survey/:url', function(req, res, next) {
   //res.render('index', { title: 'Express' });
-  SurveyData.findOne({url:req.params.a},function(err,data){
+  SurveyData.findOne({url:req.params.url},function(err,data){
     assert.equal(null, err);
     res.render('survey', {data: JSON.stringify(data)});
   });
@@ -95,6 +108,7 @@ router.post('/survey', function(req, res, next) {
   Survey_ans.insertOne({data:req.body, url:req.body.url},
     function (err,result) {
       assert.equal(err, null);
+      SurveyData.update({url:req.body.url}, { $inc: {ans:1}});
       res.send(JSON.stringify(req.body));
   });
 });
