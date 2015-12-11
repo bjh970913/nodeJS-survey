@@ -12,12 +12,13 @@ var shortid = require('shortid');
 //setting Mongodb
 
 var url = 'mongodb://admin:admin@ds053764.mongolab.com:53764/hyohun';
-var User, SurveyData;
+var User, SurveyData, Survey_ans;
 
 MongoClient.connect(url, function(err, db_conn) {
   assert.equal(null, err);
   User = db_conn.collection('User');
   SurveyData = db_conn.collection('Survey');
+  Survey_ans = db_conn.collection('Ans');
   
   console.log("Connected correctly to server");
 });
@@ -27,7 +28,7 @@ MongoClient.connect(url, function(err, db_conn) {
 //cutom router middleware 
 function check_auth(req, res, next) {
   if (req.isAuthenticated()) { return next(); }
-  res.send('<script>alert("Please sign in!");location.href="/signin";</script>');
+  res.send('<script>alert("Please log in!");location.href="/login";</script>');
 }
 
 //====================================================
@@ -38,8 +39,8 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-router.get('/regiter', function(req, res){
-  res.render('regiter');
+router.get('/register', function(req, res){
+  res.render('register');
 });
 
 router.get('/login', function(req, res, next) {
@@ -73,12 +74,29 @@ router.post('/save', check_auth, function(req, res, next) {
 
 router.get('/stat/:a', check_auth, function(req, res, next) {
   //res.render('index', { title: 'Express' });
+  SurveyData.findOne({url:req.params.a},function(err,data){
+    assert.equal(null, err);
+    console.log(err)
+    console.log(data);
+  });
   res.send(req.params.a);
 });
 
 router.get('/survey/:a', function(req, res, next) {
   //res.render('index', { title: 'Express' });
-  res.send("asd");
+  SurveyData.findOne({url:req.params.a},function(err,data){
+    assert.equal(null, err);
+    res.render('survey', {data: JSON.stringify(data)});
+  });
+});
+
+router.post('/survey', function(req, res, next) {
+  //res.render('index', { title: 'Express' });
+  Survey_ans.insertOne({data:req.body, url:req.body.url},
+    function (err,result) {
+      assert.equal(err, null);
+      res.send(JSON.stringify(req.body));
+  });
 });
 
 router.get('/dbtest/:a', function(req, res, next) {
