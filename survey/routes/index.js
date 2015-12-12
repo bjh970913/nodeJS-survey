@@ -51,7 +51,7 @@ router.get('/login', function(req, res, next) {
 
 router.get('/logout', function(req, res, next) {
   req.logout();
-  res.send('<script>alert("Logged out success!");location.href="/";</script>');
+  res.send('<script>alert("Logged out successfully!");location.href="/";</script>');
 });
 
 router.get('/manage', check_auth, function(req, res, next) {
