@@ -1,0 +1,9 @@
+#meta, #ans {
+	display: none;
+}
+
+td div{
+	width: 200px;
+	word-wrap:break-word;
+	/*overflow: auto;*/
+}

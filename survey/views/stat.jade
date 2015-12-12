@@ -1,0 +1,14 @@
+html
+  head
+    meta(charset='UTF-8')
+    title Document
+    link(rel='stylesheet', type='text/css', href='/stylesheets/stat.css')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js')
+    script(src='/javascripts/stat.js')
+  body
+    table#stat
+      tr
+    #meta= meta
+    #ans
+      for val in ans
+        p= val

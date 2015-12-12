@@ -8,6 +8,8 @@ var passport = require('passport')
 
 var shortid = require('shortid');
 
+var DB = require('./db.js')
+
 //====================================================
 //setting Mongodb
 
@@ -87,12 +89,20 @@ router.post('/save', check_auth, function(req, res, next) {
 
 router.get('/stat/:a', check_auth, function(req, res, next) {
   //res.render('index', { title: 'Express' });
-  SurveyData.findOne({url:req.params.a},function(err,data){
-    assert.equal(null, err);
-    console.log(err)
-    console.log(data);
+  SurveyData.findOne({url:req.params.a}, function(err,data){
+    Survey_ans.find({url:req.params.a}).toArray(function(err,ans){
+      assert.equal(null, err);
+      
+      data = JSON.stringify(data);
+      
+      for(var i=0;i<ans.length;i++){
+        ans[i] = JSON.stringify(ans[i]);
+      }
+      
+      res.render('stat', {meta: data, ans: ans});
+    });  
   });
-  res.send(req.params.a);
+  
 });
 
 router.get('/survey/:url', function(req, res, next) {
