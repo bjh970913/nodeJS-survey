@@ -1,27 +1,27 @@
 html
   head
     meta(charset='UTF-8')
-    title Document
-    link(rel='stylesheet', type='text/css', href='/stylesheets/basic.css')
+    title Manage
+    link(rel='stylesheet', type='text/css', href='/stylesheets/manage.css')
     script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js')
-    script(src='/javascripts/create.js')
   body
-    div
-      a(href='/logout') LOGOUT
-      br
-      a(href='/create') Create NEW survey
-    hr
+    div(onclick='window.location.href="/create"')
+    a#logout(href='/logout') LOGOUT
+    a#create(href='/create') Create NEW survey
     table
       tr
         th Title
         th url
         th Answers
         th stat
+        th edit
       each val in data
         tr
           td= val.title
           td
             a(href='http://127.0.0.1:3000/survey/'+val.url)= href='http://127.0.0.1:3000/survey/'+val.url
           td= val.ans
-          th
+          td
             a(href='http://127.0.0.1:3000/stat/'+val.url) VIEW
+          td
+            a(href='http://127.0.0.1:3000/edit/'+val.url) EDIT

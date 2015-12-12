@@ -3,6 +3,7 @@ html
     meta(charset='UTF-8')
     title Document
     link(rel='stylesheet', type='text/css', href='/stylesheets/basic.css')
+    link(rel='stylesheet', type='text/css', href='/stylesheets/create.css')
     script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js')
     script(src='/javascripts/create.js')
   body
@@ -17,7 +18,7 @@ html
           li(onclick='addMultiSelect()') multi select
           li(onclick='addShortText()') short text
           li(onclick='addLongText()') long text
-    div(onclick='writeSubmit()')
+    #save(onclick='writeSubmit()')
       | SAVE
     #template
       .SingleSelect
