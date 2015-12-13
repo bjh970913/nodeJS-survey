@@ -113,6 +113,17 @@ router.get('/survey/:url', function(req, res, next) {
   });
 });
 
+router.get('/del/:url', function(req, res, next) {
+  //res.render('index', { title: 'Express' });
+  SurveyData.deleteMany({url:req.params.url}, function(err, res){
+    assert.equal(null, err);
+    Survey_ans.deleteMany({url:req.params.url}, function(err, res){
+      assert.equal(null, err);
+      res.send('<script>alert("삭제 성공");location.href="/manage";</script>');
+    });
+  });
+});
+
 router.post('/survey', function(req, res, next) {
   //res.render('index', { title: 'Express' });
   Survey_ans.insertOne({data:req.body, url:req.body.url},

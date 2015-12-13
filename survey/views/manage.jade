@@ -14,7 +14,7 @@ html
         th 링크 
         th 응답수
         th 통계
-        //th edit
+        th 삭제 
       each val in data
         tr
           td= val.title
@@ -23,5 +23,5 @@ html
           td= val.ans
           td
             a(href='http://127.0.0.1:3000/stat/'+val.url) 이동
-          //td
-            a(href='http://127.0.0.1:3000/edit/'+val.url) EDIT
+          td
+            a(href='http://127.0.0.1:3000/del/'+val.url) 삭제
