@@ -115,9 +115,9 @@ router.get('/survey/:url', function(req, res, next) {
 
 router.get('/del/:url', function(req, res, next) {
   //res.render('index', { title: 'Express' });
-  SurveyData.deleteMany({url:req.params.url}, function(err, res){
+  SurveyData.deleteMany({url:req.params.url}, function(err, data){
     assert.equal(null, err);
-    Survey_ans.deleteMany({url:req.params.url}, function(err, res){
+    Survey_ans.deleteMany({url:req.params.url}, function(err, data){
       assert.equal(null, err);
       res.send('<script>alert("삭제 성공");location.href="/manage";</script>');
     });
