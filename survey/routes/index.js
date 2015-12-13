@@ -10,6 +10,8 @@ var shortid = require('shortid');
 
 var DB = require('./db.js')
 
+var serviceUrl = "http://127.0.0.1";
+
 //====================================================
 //setting Mongodb
 
@@ -56,7 +58,7 @@ router.get('/logout', function(req, res, next) {
 
 router.get('/manage', check_auth, function(req, res, next) {
   SurveyData.find({user:req.user.username}, {title:1, url:1, ans:1}).toArray(function(err, docs){
-    res.render('manage', {data:docs});
+    res.render('manage', {data:docs, url:serviceUrl});
   });
 });
 
@@ -83,7 +85,7 @@ router.post('/save', check_auth, function(req, res, next) {
   SurveyData.insertOne({user:req.user.username, data:req.body, url:uurl, title:req.body.title, ans:0},
     function (err,result) {
       assert.equal(err, null);
-      res.send('성공적으로 설문을 생성했습니다.<br><a href="http://127.0.0.1:3000/survey/'+uurl+'">LINK</a>링크를 통해 설문에 참여하도록 할 수 있습니다.');
+      res.send('성공적으로 설문을 생성했습니다.<br><a href="'+serviceUrl+':3000/survey/'+uurl+'">LINK</a>링크를 통해 설문에 참여하도록 할 수 있습니다.');
   });
 });
 

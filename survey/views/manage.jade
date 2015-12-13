@@ -19,9 +19,9 @@ html
         tr
           td= val.title
           td
-            a(href='http://127.0.0.1:3000/survey/'+val.url)= href='http://127.0.0.1:3000/survey/'+val.url
+            a(href=url+':3000/survey/'+val.url)= url+':3000/survey/'+val.url
           td= val.ans
           td
-            a(href='http://127.0.0.1:3000/stat/'+val.url) 이동
+            a(href='/survey/'+val.url) 이동
           td
-            a(href='http://127.0.0.1:3000/del/'+val.url) 삭제
+            a(href='/del/'+val.url) 삭제
