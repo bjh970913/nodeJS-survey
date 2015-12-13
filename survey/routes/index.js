@@ -119,7 +119,7 @@ router.post('/survey', function(req, res, next) {
     function (err,result) {
       assert.equal(err, null);
       SurveyData.update({url:req.body.url}, { $inc: {ans:1}});
-      res.send(JSON.stringify(req.body));
+      res.send("Thank you for answering!!");
   });
 });
 

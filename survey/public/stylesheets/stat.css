@@ -1,9 +1,35 @@
+body{
+	text-align: center;
+	font-family: LLCircularWeb-Bold,sans-serif;
+}
+
 #meta, #ans {
 	display: none;
 }
 
 td div{
-	width: 200px;
+	min-width: 200px;
+	max-width: 800px;
 	word-wrap:break-word;
+	text-align: left;
+	padding-left: 10px;
 	/*overflow: auto;*/
+}
+
+table{
+	margin-top: 10px;
+	width:100%;
+}
+
+table, td, tr{
+	border-collapse: collapse;
+	border: solid 1px black;
+	
+	font-size: 20px;
+}
+
+td{
+	text-align: center;
+	height: 50px;
+	padding: 7px 7px;
 }

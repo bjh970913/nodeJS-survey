@@ -3,6 +3,8 @@ html
     title Register
     link(rel='stylesheet', type='text/css', href='/stylesheets/style.css')
     link(rel='stylesheet', type='text/css', href='/stylesheets/register.css')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js')
+    script(src='/javascripts/register.js')
   body
     h1 register
     form#local-reg.collapse(action='/local-reg', method='post')
@@ -12,9 +14,9 @@ html
         input(type='text', name='username')
       div
         label PW:
-        input(type='password', name='password')
+        input#pw1(type='password', name='password')
       div
         label PW check:
-        input(type='password', name='password_check')
+        input#pw2(type='password', name='password_check')
       div
-        input.btn.btn-primary.btn-sm(type='submit', value='Register')
+        input.btn.btn-primary.btn-sm(type='submit', value='register')

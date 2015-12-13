@@ -44,14 +44,18 @@ $(document).ready(function(){
 		
 		tmp = $("form").children();
 		obj = tmp[tmp.length-1];
-
-		$($(obj).children()[0]).text(data[i].que);
+		
+		must = data[i].NOT_NULL?'**':'';
+		
+		$($(obj).children()[0]).text(data[i].que+'  '+must);
 
 	}
 });
 
 function writeSubmit(){
 	var send_data={};
+
+	$('.mustAns').removeClass('mustAns');
 
 	send_data['url'] = $('input[name="url"]').val();
 
@@ -77,6 +81,7 @@ function writeSubmit(){
 		if(data[i].NOT_NULL && send_data[i].length==0)
 		{
 			alert("PLZ fill the blank questions");
+			$(ques[i]).addClass('mustAns');
 			return false;
 		}
 	}

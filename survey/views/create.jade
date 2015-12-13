@@ -24,12 +24,18 @@ html
       .SingleSelect
         input.que(type='text', value='Edit')
         ul
+          li
+            input(type='radio')
+            input(type='text', value='edit')
           li(onclick='addSingleOption(this)') ADD
         input.must(type='checkbox')
         input.del(type='button', value='X', onclick='removeQue(this)')
       .MultiSelect
         input.que(type='text', value='Edit')
         ul
+          li
+            input(type='checkbox')
+            input(type='text', value='edit')
           li(onclick='addMultiOption(this)') ADD
         input.must(type='checkbox')
         input.del(type='button', value='X', onclick='removeQue(this)')

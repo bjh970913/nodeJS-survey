@@ -14,7 +14,7 @@ html
         th url
         th Answers
         th stat
-        th edit
+        //th edit
       each val in data
         tr
           td= val.title
@@ -23,5 +23,5 @@ html
           td= val.ans
           td
             a(href='http://127.0.0.1:3000/stat/'+val.url) VIEW
-          td
+          //td
             a(href='http://127.0.0.1:3000/edit/'+val.url) EDIT

@@ -88,3 +88,11 @@ div#save{
 div#save:hover{
 	background-color: #14892c;
 }
+
+.mustAns{
+	border: 10px solid #FF8B39 !important;
+}
+
+#title{
+	font-size: 55px;
+}
