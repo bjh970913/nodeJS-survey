@@ -10,7 +10,7 @@ var shortid = require('shortid');
 
 var DB = require('./db.js')
 
-var serviceUrl = "http://nodesurvey.herokuapp.com/";
+var serviceUrl = "http://nodesurvey.herokuapp.com";
 
 //====================================================
 //setting Mongodb
