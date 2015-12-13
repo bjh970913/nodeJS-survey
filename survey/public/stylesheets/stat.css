@@ -33,3 +33,12 @@ td{
 	height: 50px;
 	padding: 7px 7px;
 }
+
+li{
+	position: relative;
+}
+
+li span{
+	position: absolute;
+	right: 10px;
+}

@@ -3,9 +3,28 @@ html
     meta(charset='UTF-8')
     title Document
     link(rel='stylesheet', type='text/css', href='/stylesheets/stat.css')
+    link(rel='stylesheet', type='text/css', href='/stylesheets/stat_2.css')
+    link(rel='stylesheet', type='text/css', href='/stylesheets/basic.css')
     script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js')
     script(src='/javascripts/stat.js')
   body
+    #statByQ
+      #template(style='display:none;')
+        .SingleSelect
+          p.que
+          ul
+        .MultiSelect
+          p.que
+          ul
+        .ShortText
+          p.que
+          input(type='text')
+        .LongText
+          p.que
+          textarea(id='', cols='30', rows='10')
+    br
+    hr
+    br
     table#stat
       tr
     #meta= meta
