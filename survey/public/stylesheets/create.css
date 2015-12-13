@@ -1,34 +1,26 @@
-body{
-	text-align: center;
-	font-family: LLCircularWeb-Bold,sans-serif;
-}
-
-div{
-	margin: 0 auto;
-}
-
-div#save{
-	text-decoration: none;
-	display: block;
-	
-	width: 240px;
-	height: 50px;
-	
-	border: solid 1px #67ab49;
-	border-radius: 10px;
-	
-	margin: 0 auto;
+#add{
 	margin-top: 10px;
+	width: 620px;
+}
+
+#add ul{
+	padding: 0;
+}
+
+#add div{
+	border: 1px solid #67ab49;
+	border-radius: 3px;
+	width: 240px;
 	
-	line-height: 50px;
+	display: none;
+	
+	cursor: pointer;
 }
 
-div#save{
-	background-color: #67ab49;
-	color: white;
-	font-size: 18px;
+#add div li:hover{
+	background-color: #FF8B39;
 }
 
-div#save:hover{
-	background-color: #14892c;
+#add:hover > div{
+	display: inherit;
 }

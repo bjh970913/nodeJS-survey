@@ -10,7 +10,7 @@ html
       p#title
       form(action='/survey', method='POST')
         input(type='hidden', name='url')
-    div(onclick='writeSubmit()')
+    #save(onclick='writeSubmit()')
       | SAVE
     #template(style='display:none;')
       .SingleSelect

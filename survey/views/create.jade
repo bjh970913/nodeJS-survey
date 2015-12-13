@@ -10,7 +10,7 @@ html
     #survey
       | TITLE : 
       input(type='text')
-    #add(style='width:600px; height:130px; border:1px solid black;')
+    #add
       | ADD
       div
         ul
@@ -22,24 +22,24 @@ html
       | SAVE
     #template
       .SingleSelect
-        input(type='text', value='Edit')
+        input.que(type='text', value='Edit')
         ul
           li(onclick='addSingleOption(this)') ADD
-        input(type='checkbox')
-        input(type='button', value='X', onclick='removeQue(this)')
+        input.must(type='checkbox')
+        input.del(type='button', value='X', onclick='removeQue(this)')
       .MultiSelect
-        input(type='text', value='Edit')
+        input.que(type='text', value='Edit')
         ul
           li(onclick='addMultiOption(this)') ADD
-        input(type='checkbox')
-        input(type='button', value='X', onclick='removeQue(this)')
+        input.must(type='checkbox')
+        input.del(type='button', value='X', onclick='removeQue(this)')
       .ShortText
-        input(type='text', value='Edit')
+        input.que(type='text', value='Edit')
         input(type='text')
-        input(type='checkbox')
-        input(type='button', value='X', onclick='removeQue(this)')
+        input.must(type='checkbox')
+        input.del(type='button', value='X', onclick='removeQue(this)')
       .LongText
-        input(type='text', value='Edit')
+        input.que(type='text', value='Edit')
         textarea(id='', cols='30', rows='10')
-        input(type='checkbox')
-        input(type='button', value='X', onclick='removeQue(this)')
+        input.must(type='checkbox')
+        input.del(type='button', value='X', onclick='removeQue(this)')

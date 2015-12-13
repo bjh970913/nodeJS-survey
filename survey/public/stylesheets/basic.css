@@ -1,9 +1,14 @@
-#add > div{
-	display: none;
+body{
+	text-align: center;
+	font-family: LLCircularWeb-Bold,sans-serif;
 }
 
-#add:hover > div{
-	display: inherit;
+div{
+	margin: 0 auto;
+}
+
+li{
+	list-style: none;
 }
 
 #template{
@@ -12,17 +17,74 @@
 
 .SingleSelect, .MultiSelect, .ShortText, .LongText{
 	width: 600px;
+	margin-top: 5px;
+	position: relative;
+	min-height: 70px;
+	
+	padding: 10px;
+	text-align: left;
+	
+	border: 2px solid;
+	border-radius: 3px;
+}
+
+input.que{
+	width: 590px;
+	display: block;
+	
+	margin-bottom: 10px;
 }
 
 .SingleSelect{
-	background-color: yellowgreen;
+	border-color: yellowgreen;
 }
 .MultiSelect{
-	background-color: yellow;
+	border-color: yellow;
 }
 .ShortText{
-	background-color: crimson;
+	border-color: crimson;
 }
 .LongText{
-	background-color: skyblue;
+	border-color: skyblue;
+}
+
+.must{
+	position: absolute;
+	transform: scale(1.8);
+	-webkit-transform: scale(1.8);
+	
+	right: -30px;
+	top: 1px;	
+}
+
+.del{
+	position: absolute;
+	
+	width: 21px;
+	height: 21px;
+	font-size: 17px;
+	padding: 0;
+	
+	right: -30px;
+	top: 31px;
+}
+
+div#save{
+	text-decoration: none;
+	display: block;
+	color: white;
+	width: 240px;
+	height: 50px;
+	font-size: 18px;
+	background-color: #67ab49;
+	border-radius: 10px;
+	
+	margin: 0 auto;
+	margin-top: 10px;
+	
+	line-height: 50px;
+}
+
+div#save:hover{
+	background-color: #14892c;
 }
