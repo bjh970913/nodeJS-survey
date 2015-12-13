@@ -8,16 +8,16 @@ html
     script(src='/javascripts/create.js')
   body
     #survey
-      | TITLE : 
+      | 제목 : 
       input(type='text')
     #add
-      | ADD
+      | 질문 추가 
       div
         ul
-          li(onclick='addSingleSelect()') single select
-          li(onclick='addMultiSelect()') multi select
-          li(onclick='addShortText()') short text
-          li(onclick='addLongText()') long text
+          li(onclick='addSingleSelect()') 단일선택 객관식
+          li(onclick='addMultiSelect()') 다중선택 객관식
+          li(onclick='addShortText()') 단일 입력(1줄 text) 
+          li(onclick='addLongText()') 의견(long text)
     #save(onclick='writeSubmit()')
       | SAVE
     #template
@@ -27,7 +27,7 @@ html
           li
             input(type='radio')
             input(type='text', value='edit')
-          li(onclick='addSingleOption(this)') ADD
+          li(onclick='addSingleOption(this)') 문항추가 
         input.must(type='checkbox')
         input.del(type='button', value='X', onclick='removeQue(this)')
       .MultiSelect
@@ -36,7 +36,7 @@ html
           li
             input(type='checkbox')
             input(type='text', value='edit')
-          li(onclick='addMultiOption(this)') ADD
+          li(onclick='addMultiOption(this)') 문항추가 
         input.must(type='checkbox')
         input.del(type='button', value='X', onclick='removeQue(this)')
       .ShortText

@@ -5,13 +5,12 @@ body{
 
 table{
 	margin-top: 10px;
+	width:100%;
 }
 
 table, td, tr{
 	border-collapse: collapse;
 	border: solid 1px black;
-	
-	width:100%;
 	
 	font-size: 20px;
 }
@@ -24,10 +23,6 @@ td{
 
 tr td:nth-child(1){
 	width: 13%;
-}
-
-tr td:nth-child(3){
-	width: 10%;
 }
 
 tr td:nth-child(n+5){

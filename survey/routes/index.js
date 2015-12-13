@@ -30,7 +30,7 @@ MongoClient.connect(url, function(err, db_conn) {
 //cutom router middleware 
 function check_auth(req, res, next) {
   if (req.isAuthenticated()) { return next(); }
-  res.send('<script>alert("Please log in!");location.href="/login";</script>');
+  res.send('<script>alert("로그인이 필요합니다.");location.href="/login";</script>');
 }
 
 //====================================================
@@ -51,7 +51,7 @@ router.get('/login', function(req, res, next) {
 
 router.get('/logout', function(req, res, next) {
   req.logout();
-  res.send('<script>alert("Logged out successfully!");location.href="/";</script>');
+  res.send('<script>alert("로그아웃 성공");location.href="/";</script>');
 });
 
 router.get('/manage', check_auth, function(req, res, next) {
@@ -69,13 +69,13 @@ router.get('/admin', check_auth, function(req, res, next) {
   }
   else
   {
-    res.send("You're not admin.");
+    res.send("관리자가 아닙니다.");
   }
   
 });
 
 router.get('/create', check_auth, function(req, res, next) {
-  res.render('create', { title: 'Create your own survey page' });
+  res.render('create', { title: '설문 제작' });
 });
 
 router.post('/save', check_auth, function(req, res, next) {
@@ -83,7 +83,7 @@ router.post('/save', check_auth, function(req, res, next) {
   SurveyData.insertOne({user:req.user.username, data:req.body, url:uurl, title:req.body.title, ans:0},
     function (err,result) {
       assert.equal(err, null);
-      res.send('success!<br>Here is your <a href="http://127.0.0.1:3000/survey/'+uurl+'">LINK</a>');
+      res.send('성공적으로 설문을 생성했습니다.<br><a href="http://127.0.0.1:3000/survey/'+uurl+'">LINK</a>링크를 통해 설문에 참여하도록 할 수 있습니다.');
   });
 });
 
@@ -119,7 +119,7 @@ router.post('/survey', function(req, res, next) {
     function (err,result) {
       assert.equal(err, null);
       SurveyData.update({url:req.body.url}, { $inc: {ans:1}});
-      res.send("Thank you for answering!!");
+      res.send("응답해주셔서 감사합니다.");
   });
 });
 
