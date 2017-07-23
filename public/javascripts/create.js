@@ -1,96 +1,112 @@
+var $ = window.$;
+
 function addSingleSelect() {
-	$("#survey").append($('#template .SingleSelect').clone());
+  $('#survey').append($('#template').find('.SingleSelect').clone());
 }
+
 function addMultiSelect() {
-	$("#survey").append($('#template .MultiSelect').clone());
+  $('#survey').append($('#template').find('.MultiSelect').clone());
 }
+
 function addShortText() {
-	$("#survey").append($('#template .ShortText').clone());
+  $('#survey').append($('#template').find('.ShortText').clone());
 }
+
 function addLongText() {
-	$("#survey").append($('#template .LongText').clone());
+  $('#survey').append($('#template').find('.LongText').clone());
 }
+
 function addSingleOption(e) {
-	$(e).parent().append("<li><input type='radio'/><input type='text' value='Edit'/></li>");
-	$(e).parent().append($(e));
+  $(e).parent().append('<li><input type=\'radio\'/><input  value=\'Edit\'/></li>');
+  $(e).parent().append($(e));
 }
+
 function addMultiOption(e) {
-	$(e).parent().append("<li><input type='checkbox'/><input type='text' value='Edit'/></li>");
-	$(e).parent().append($(e));
+  $(e).parent().append('<li><input type=\'checkbox\'/><input  value=\'Edit\'/></li>');
+  $(e).parent().append($(e));
 }
 
-function readSingleSelect(i,o){
+function readSingleSelect(i, o) {
 
-	var li = $(o).children().select('ul').children();
+  var li = $(o).children().select('ul').children();
 
-	for(j=0;j<li.length-1;j++)
-	{
-		data[i][j] = $(li[j]).children().eq(1).val();
-	}
+  for (var j = 0; j < li.length - 1; j++) {
+    data[i][j] = $(li[j]).children().eq(1).val();
+  }
 }
-function readMultiSelect(i,o){
-	var li = $(o).children().select('ul').children();
 
-	for(j=0;j<li.length-1;j++)
-	{
-		data[i][j] = $(li[j]).children().eq(1).val();
-	}
+function readMultiSelect(i, o) {
+  var li = $(o).children().select('ul').children();
+
+  for (var j = 0; j < li.length - 1; j++) {
+    data[i][j] = $(li[j]).children().eq(1).val();
+  }
 }
+
 function removeQue(e) {
-	$(e).parent().remove();
+  $(e).parent().remove();
 }
 
-var data = {'title':''};
+var data = {'title': ''};
 
 function writeSubmit() {
-		
-	var field = $('#survey').children();
-	
-	data['title'] = $(field[0]).val();
-	
-	field = field.slice(1);
-	
-	$.each(field, function(i,o) {
-		
-		data[i]={};
 
-		data[i]['que'] = $($(o).children()[0]).val();
+  var field = $('#survey').children();
 
-		var type = $(o).attr('class');
+  data['title'] = $(field[0]).val();
 
-		data[i]['type'] = type;
+  field = field.slice(1);
 
-		switch(type) {
-			case 'SingleSelect':
-				readSingleSelect(i,o);
-				console.log('read 0');
-				break;
-			case 'MultiSelect':
-				readMultiSelect(i,o);
-				console.log('read 1');
-				break;
-			case 'ShortText':
-				console.log('read 2');
-				break;
-			case 'LongText':
-				console.log('read 3');
-				break;
-		}
+  $.each(field, function (i, o) {
+
+    data[i] = {};
+
+    data[i]['que'] = $($(o).children()[0]).val();
+
+    var type = $(o).attr('class');
+
+    data[i]['type'] = type;
+
+    switch (type) {
+      case 'SingleSelect':
+        readSingleSelect(i, o);
+        console.log('read 0');
+        break;
+      case 'MultiSelect':
+        readMultiSelect(i, o);
+        console.log('read 1');
+        break;
+      case 'ShortText':
+        console.log('read 2');
+        break;
+      case 'LongText':
+        console.log('read 3');
+        break;
+    }
 
 
-		child = $(o).children();
-		data[i]['NOT_NULL'] = $(child[child.length - 2]).prop('checked');
-	})
+    var child = $(o).children();
+    data[i]['NOT_NULL'] = $(child[child.length - 2]).prop('checked');
+  });
 
-	$.ajax({
-		url:"/save",
-		type:"POST",
-		data:JSON.stringify(data),
-		contentType:"application/json; charset=utf-8",
-		dataType:"text",
-		success: function(res){
-			document.body.innerHTML="";
-			document.body.innerHTML=res;
-		}
-	})
+  $.ajax({
+    url: '/save',
+    type: 'POST',
+    data: JSON.stringify(data),
+    contentType: 'application/json; charset=utf-8',
+    dataType: 'text',
+    success: function (res) {
+      document.body.innerHTML = '';
+      document.body.innerHTML = res;
+    }
+  });
 }
+
+window.addSingleSelect = addSingleSelect;
+window.addMultiSelect = addMultiSelect;
+window.addMultiOption = addMultiOption;
+window.addShortText = addShortText;
+window.addLongText = addLongText;
+window.addSingleOption = addSingleOption;
+window.removeQue = removeQue;
+window.writeSubmit = writeSubmit;

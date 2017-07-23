@@ -78,10 +78,9 @@ div#save{
 	font-size: 18px;
 	background-color: #67ab49;
 	border-radius: 10px;
-	
-	margin: 0 auto;
-	margin-top: 10px;
-	
+
+	margin: 10px auto 0;
+
 	line-height: 50px;
 }
 
