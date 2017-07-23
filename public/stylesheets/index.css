@@ -1,0 +1,40 @@
+body{
+	text-align: center;
+	font-family: LLCircularWeb-Bold,sans-serif;
+	
+	margin-top: 18%;
+}
+
+h1{
+	font-size: 58px;
+	color: #205081;
+}
+
+a{
+	text-decoration: none;
+	display: block;
+	
+	width: 240px;
+	height: 50px;
+	
+	border: solid 1px #67ab49;
+	border-radius: 10px;
+	
+	margin: 0 auto;
+	
+	line-height: 50px;
+}
+
+a#register{
+	background-color: #67ab49;
+	color: white;
+	font-size: 18px;
+}
+
+a#register:hover{
+	background-color: #14892c;
+}
+
+a#login{
+	color: #67ab49;
+}

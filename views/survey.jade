@@ -1,0 +1,28 @@
+html
+  head
+    meta(charset='UTF-8')
+    title Document
+    link(rel='stylesheet', type='text/css', href='/stylesheets/basic.css')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js')
+    script(src='/javascripts/survey.js')
+  body
+    #survey
+      p#title
+      form(action='/survey', method='POST')
+        input(type='hidden', name='url')
+    #save(onclick='writeSubmit()')
+      | 제출
+    #template(style='display:none;')
+      .SingleSelect
+        p.que
+        ul
+      .MultiSelect
+        p.que
+        ul
+      .ShortText
+        p.que
+        input(type='text')
+      .LongText
+        p.que
+        textarea(id='', cols='30', rows='10')
+    #data(style='display:none;')=data

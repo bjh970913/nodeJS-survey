@@ -1,0 +1,27 @@
+html
+  head
+    meta(charset='UTF-8')
+    title 설문 관리
+    link(rel='stylesheet', type='text/css', href='/stylesheets/manage.css')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js')
+  body
+    div(onclick='window.location.href="/create"')
+    a#logout(href='/logout') LOGOUT
+    a#create(href='/create') 새 설문 생성
+    table
+      tr
+        th 제목
+        th 링크 
+        th 응답수
+        th 통계
+        th 삭제 
+      each val in data
+        tr
+          td= val.title
+          td
+            a(href=url+'/survey/'+val.url)= url+'/survey/'+val.url
+          td= val.ans
+          td
+            a(href='/stat/'+val.url) 이동
+          td
+            a(href='/del/'+val.url) 삭제

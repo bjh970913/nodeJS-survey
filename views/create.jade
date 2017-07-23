@@ -1,0 +1,51 @@
+html
+  head
+    meta(charset='UTF-8')
+    title Document
+    link(rel='stylesheet', type='text/css', href='/stylesheets/basic.css')
+    link(rel='stylesheet', type='text/css', href='/stylesheets/create.css')
+    script(src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js')
+    script(src='/javascripts/create.js')
+  body
+    #survey
+      | 제목 : 
+      input(type='text')
+    #add
+      | 질문 추가 
+      div
+        ul
+          li(onclick='addSingleSelect()') 단일선택 객관식
+          li(onclick='addMultiSelect()') 다중선택 객관식
+          li(onclick='addShortText()') 단일 입력(1줄 text) 
+          li(onclick='addLongText()') 의견(long text)
+    #save(onclick='writeSubmit()')
+      | SAVE
+    #template
+      .SingleSelect
+        input.que(type='text', value='Edit')
+        ul
+          li
+            input(type='radio')
+            input(type='text', value='edit')
+          li(onclick='addSingleOption(this)') 문항추가 
+        input.must(type='checkbox')
+        input.del(type='button', value='X', onclick='removeQue(this)')
+      .MultiSelect
+        input.que(type='text', value='Edit')
+        ul
+          li
+            input(type='checkbox')
+            input(type='text', value='edit')
+          li(onclick='addMultiOption(this)') 문항추가 
+        input.must(type='checkbox')
+        input.del(type='button', value='X', onclick='removeQue(this)')
+      .ShortText
+        input.que(type='text', value='Edit')
+        input(type='text')
+        input.must(type='checkbox')
+        input.del(type='button', value='X', onclick='removeQue(this)')
+      .LongText
+        input.que(type='text', value='Edit')
+        textarea(id='', cols='30', rows='10')
+        input.must(type='checkbox')
+        input.del(type='button', value='X', onclick='removeQue(this)')
